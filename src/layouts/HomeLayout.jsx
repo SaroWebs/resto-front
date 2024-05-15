@@ -4,6 +4,7 @@ import Navbar from '../components/navigation/Navbar';
 import CategorySlider from '../components/CategorySlider';
 import BottomNav from '../components/navigation/BottomNav';
 import SearchBar from '../components/SearchBar';
+import BannerSlider from '../components/BannerSlider';
 
 const HomeLayout = (props) => {
    
@@ -37,6 +38,7 @@ const HomeLayout = (props) => {
                 <SearchBar />
             </div>
             <CategorySlider clearError={clearError} setAppError={setAppError} />
+            <BannerSlider/>
             <BottomNav />
         </div>
     )

@@ -32,21 +32,21 @@ const CategorySlider = (props) => {
         getCategories();
     }, []);
     return (
-        <div className={categories.length < 6 ? 'px-16 py-4' : 'px-2 py-4' }>
+        <div className={categories.length < 6 ? 'px-8 py-4' : 'px-2 py-4' }>
             <Swiper
                 slidesPerView={categories.length < 6 ? categories.length : 6}
                 spaceBetween={10}
                 className="mySwiper"
                 draggable={true}
             >
-                {categories.map(category => (
+                {categories ? categories.map(category => (
                     <SwiperSlide key={category.id}>
                         <a href={`/c/${category.id}`} className="flex flex-col items-center">
                             <img src={app_url + category.image_url} alt={category.name} className="w-60" loading="lazy" />
                             <span className="text-xs font-semibold uppercase">{category.name}</span>
                         </a>
                     </SwiperSlide>
-                ))}
+                )):''}
             </Swiper>
         </div>
     )

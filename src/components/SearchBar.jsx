@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -13,6 +14,7 @@ const SearchBar = () => {
 
   return (
     <div className="flex items-center w-full border rounded-full p-2 bg-white my-5">
+      <CiSearch className="text-gray-400 ml-2" />
       <input
         type="text"
         value={query}

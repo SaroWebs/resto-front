@@ -1,52 +1,57 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
 
-// Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 // Import required modules
 import { Navigation, Pagination } from 'swiper/modules';
+let app_url = 'http://localhost:8000';
+let offbanners = [
+  {
+    id: 1,
+    image_url: '/images/banner/off-ban1.png',
+    link: '/',
+    type: 'offer',
+  },
+  {
+    id: 2,
+    image_url: '/images/banner/off-ban2.png',
+    link: '/',
+    type: 'offer',
+  },
+  {
+    id: 3,
+    image_url: '/images/banner/off-ban3.png',
+    link: '/',
+    type: 'offer',
+  },
+];
 
 const BannerSlider = () => {
   return (
-    <Swiper
-      spaceBetween={10}
-      slidesPerView={1}
-      navigation
-      pagination={{ clickable: true }}
-      modules={[Navigation, Pagination]}
-    >
-      <SwiperSlide>
-        <div className="card add-banner bg-secondary">
-          <div className="circle-1"></div>
-          <div className="circle-2"></div>
-          <div className="card-body">
-            <div className="card-info">
-              <span>Happy Weekend</span>
-              <h2 data-text="60% OFF" className="title m-t10">60% OFF</h2>
-              <small>*for All Menus</small>
-            </div>
-          </div>
-        </div>  
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="card add-banner bg-secondary">
-          <div className="circle-1"></div>
-          <div className="circle-2"></div>
-          <div className="card-body">
-            <div className="card-info">
-              <span>Happy Weekend</span>
-              <h2 data-text="60% OFF" className="title m-t10">60% OFF</h2>
-              <small>*for All Menus</small>
-            </div>
-          </div>
-        </div>  
-      </SwiperSlide>
-      {/* Add more SwiperSlide components as needed */}
-    </Swiper>
+    <>
+      {
+        offbanners.length > 0 ?
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            modules={[Navigation, Pagination]}
+          >
+            {offbanners.map(offbanner => (
+
+              <SwiperSlide key={offbanner.id}>
+                <div className="card add-banner bg-secondary">
+                  <img src={app_url + offbanner.image_url} alt="" className='w-full' />
+                </div>
+              </SwiperSlide>
+            ))}
+
+          </Swiper>
+          : ''
+      }
+    </>
   );
 };
 
