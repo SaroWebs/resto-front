@@ -1,22 +1,16 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-const Sidebar = ({isSidebar=false, setIsSidebar}) => {
-  const overlayref =  useRef(null);
+const Sidebar = (props) => {
+  const {isSidebar, setIsSidebar}=props;
 
+  console.log(isSidebar);
+  return (
+    <div className={`absolute w-64 bg-white/80 top-0 bottom-0 ${isSidebar ? 'left-0 z-50': '-left-64'}`}>
+      Sidebar
 
-  if(isSidebar){
-    return (
-      <div className='absolute top-0 bottom-0 right-0 left-0'>
-        <div ref={overlayref} onClick={()=>setIsSidebar(false)} className="absolute top-0 bottom-0 left-0 right-0 bg-black/60 z-30"></div>
-        <div className="absolute top-0 bottom-0 left-0 w-60 bg-white z-40">
-            Sidebar
-            <button onClick={()=>setIsSidebar(false)}> x </button>
-        </div>
-      </div>
-    );
-  }else{
-    return null;
-  }
+      <button onClick={setIsSidebar(false)}>close</button>
+    </div>
+  )
 }
 
 export default Sidebar

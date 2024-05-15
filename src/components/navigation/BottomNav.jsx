@@ -35,7 +35,7 @@ const BottomNav = () => {
                 {menuitems.map(item=>(
                     <span key={item.id} className='flex flex-col items-center gap-2 uppercase text-xs'>
                         {item.icon}
-                        {item.name}
+                        {item.name} 
                     </span>
                 ))}
             </div>

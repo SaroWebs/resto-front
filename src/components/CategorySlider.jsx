@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 
+let app_url = 'http://localhost:8000';
+
 const CategorySlider = (props) => {
     let [categories, setCategories] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
@@ -12,7 +14,7 @@ const CategorySlider = (props) => {
     const getCategories = () => {
         setIsLoading(true);
         props.clearError();
-        axios.get('http://localhost:8000/api/categories')
+        axios.get(`${app_url}/api/categories`)
             .then(res => {
                 setCategories(res.data);
                 setIsLoading(false);
@@ -40,7 +42,7 @@ const CategorySlider = (props) => {
                 {categories.map(category => (
                     <SwiperSlide key={category.id}>
                         <a href={`/c/${category.id}`} className="flex flex-col items-center">
-                            <img src={category.image_url} alt={category.name} className="w-60" loading="lazy" />
+                            <img src={app_url + category.image_url} alt={category.name} className="w-60" loading="lazy" />
                             <span className="text-xs font-semibold uppercase">{category.name}</span>
                         </a>
                     </SwiperSlide>
