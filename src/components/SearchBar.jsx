@@ -13,7 +13,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center w-full border rounded-full p-2 bg-white my-5">
+    <div className="flex items-center w-full border rounded-full p-2 bg-white my-5 mt-20">
       <CiSearch className="text-gray-400 ml-2" />
       <input
         type="text"
