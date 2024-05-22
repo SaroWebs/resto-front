@@ -29,7 +29,7 @@ let offbanners = [
 
 const BannerSlider = () => {
   return (
-    <>
+    <div className='px-2'>
       {
         offbanners.length > 0 ?
           <Swiper
@@ -51,7 +51,7 @@ const BannerSlider = () => {
           </Swiper>
           : ''
       }
-    </>
+    </div>
   );
 };
 

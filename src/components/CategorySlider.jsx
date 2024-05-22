@@ -16,7 +16,8 @@ const CategorySlider = (props) => {
         props.clearError();
         axios.get(`${app_url}/api/categories`)
             .then(res => {
-                setCategories(res.data);
+                let items = res.data.filter(dt => dt.is_root == 1);
+                setCategories(items);
                 setIsLoading(false);
             })
             .catch(err => {
@@ -42,7 +43,7 @@ const CategorySlider = (props) => {
                 {categories ? categories.map(category => (
                     <SwiperSlide key={category.id}>
                         <a href={`/c/${category.id}`} className="flex flex-col items-center">
-                            <img src={app_url + category.image_url} alt={category.name} className="w-60" loading="lazy" />
+                            <img src={app_url + '/' + category.icon_url} alt={category.name} className="w-60" loading="lazy" />
                             <span className="text-xs font-semibold uppercase">{category.name}</span>
                         </a>
                     </SwiperSlide>

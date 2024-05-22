@@ -43,7 +43,7 @@ const HomeLayout = (props) => {
             <BannerSlider />
             <RecommendedSection />
 
-            <div className="flex justify-between items-center py-6 px-6">
+            <div className="flex justify-between items-center pt-6 px-6">
                 <h2 className="text-l font-semibold">Trending Item</h2>
             </div>
 

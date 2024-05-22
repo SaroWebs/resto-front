@@ -1,29 +1,37 @@
 import React from 'react'
-import {IoPersonOutline , IoAppsSharp , IoNotificationsOutline, IoHomeOutline } from "react-icons/io5";
+import {IoPersonOutline , IoAppsSharp , IoReorderFourSharp , IoNotificationsOutline, IoHomeOutline } from "react-icons/io5";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { TbReportAnalytics } from "react-icons/tb";
 
 const BottomNav = () => {
     let menuitems = [
       {
         id: 1,
-        name: 'home',
+        // name: 'home',
         icon: <IoHomeOutline className='w-6 h-6' />,
         url: '/',
       },
       {
         id: 2,
-        name: 'categories',
+        // name: 'categories',
         icon: <IoAppsSharp className='w-6 h-6' />,
         url: '/',
       },
       {
         id: 3,
-        name: 'notifications',
-        icon: <IoNotificationsOutline className='w-6 h-6' />,
+        // name: 'categories',
+        icon: <TbReportAnalytics  className='w-6 h-6' />,
         url: '/',
       },
       {
         id: 4,
-        name: 'account',
+        // name: 'favourite',
+        icon: <MdOutlineFavoriteBorder  className='w-6 h-6' />,
+        url: '/',
+      },
+      {
+        id: 5,
+        // name: 'account',
         icon: <IoPersonOutline className='w-6 h-6' />,
         url: '/',
       },

@@ -2,7 +2,7 @@ import React from 'react';
 
 const TrendingItem = () => {
   return (
-    <div className="item-box border rounded-lg overflow-hidden bg-white shadow-md flex">
+    <div className="item-box border rounded-lg overflow-hidden bg-white shadow-md flex mx-4 my-4">
       <div className="item-media flex-none w-24">
         <img
           src="https://img.freepik.com/premium-photo/savory-delights-collection-illustrated-images-delicious-soups-stews-asian-culinary-treasure_1006514-53814.jpg?w=826"
@@ -10,7 +10,7 @@ const TrendingItem = () => {
           className="w-full h-auto"
         />
       </div>
-      <div className="item-content p-4 flex-grow">
+      <div className="item-content px-4 flex-grow">
         <a href="#">
           <h6 className="mb-0">Paneer Kadai</h6>
         </a>
