@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { FaUser, FaShoppingCart, FaBell, FaBars } from "react-icons/fa";
 import Sidebar from './Sidebar';
+import { useCart } from 'react-use-cart';
 
 const Navbar = (props) => {
     const [isSidebar, setIsSidebar] = useState(false);
-
+    const {totalUniqueItems} = useCart();
     const handleOpenSidebar = () => {
         setIsSidebar(!isSidebar);
     }
@@ -22,7 +23,7 @@ const Navbar = (props) => {
                     <FaBell />
                 </div>
                 <div className="rounded-full p-2 border">
-                    <FaShoppingCart />
+                    <FaShoppingCart />({totalUniqueItems})
                 </div>
                 <div className="rounded-full p-2 border">
                     <FaUser />

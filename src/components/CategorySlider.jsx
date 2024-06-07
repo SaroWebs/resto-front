@@ -13,19 +13,14 @@ const CategorySlider = (props) => {
 
     const getCategories = () => {
         setIsLoading(true);
-        props.clearError();
         axios.get(`${app_url}/api/categories`)
             .then(res => {
-                let items = res.data.filter(dt => dt.is_root == 1);
+                let items = res.data.data.filter(dt => dt.is_root == 1);
                 setCategories(items);
                 setIsLoading(false);
             })
             .catch(err => {
-                props.setAppError({
-                    hasError: true,
-                    message: err.message,
-                    type: 'server',
-                });
+                console.log(err.message);
                 setIsLoading(false);
             });
     }
