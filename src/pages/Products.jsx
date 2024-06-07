@@ -45,7 +45,7 @@ const Products = () => {
   }
 
   return (
-    <div className='shadow-md'>
+    <div className=''>
       {items.total && items.total > 0 ? (
         <div className="grid grid-cols-2 gap-4 p-4">
           {items.data.map((product, i) => <ProductCard02 key={i} product={product} app_url={app_url} />)}

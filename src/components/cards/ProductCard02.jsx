@@ -13,8 +13,8 @@ const ProductCard02 = (props) => {
 
     let [isFav, setIsFav] = useState(false);
 
-    const {addItem} = useCart();
-    
+    const { addItem } = useCart();
+
     const favToggler = () => {
         // axios.post(`${app_url}/api/product/${product.id}/addtofav`)
         //     .then(res => {
@@ -25,32 +25,33 @@ const ProductCard02 = (props) => {
         //     });
         setIsFav(!isFav)
     }
- 
+
     return (
-        <a href={`/p/${product.id}`} className='flex flex-col w-full border rounded-md pb-2 relative overflow-hidden'>
+        <a href={`/p/${product.id}`} className="flex flex-col w-full border rounded-md pb-2 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
             <button
-                onClick={favToggler}
-                className="absolute top-1 right-1 p-1 rounded-full bg-white/30">
-                {isFav ? <GoHeartFill className='w-6 h-6 text-red-500' /> : <GoHeart className='w-6 h-6' />}
+                onClick={(e) => { e.preventDefault(); favToggler(); }}
+                className="absolute top-2 right-2 p-1 rounded-full bg-white/30 backdrop-blur-md hover:bg-white/50 transition-colors duration-300"
+            >
+                {isFav ? <GoHeartFill className="w-6 h-6 text-red-500" /> : <GoHeart className="w-6 h-6 text-gray-600" />}
             </button>
             {product.images.length > 0 ? (
-                <div className="image-box">
+                <div className="h-32 w-full overflow-hidden">
                     <img
                         src={app_url + '/' + product.images[0].image_url}
                         alt={product.name}
-                        className="w-full max-h-64 object-cover"
+                        className="w-full h-full object-cover"
                     />
                 </div>
             ) : (
-                <div className="image-box">
+                <div className="h-32 w-full overflow-hidden">
                     <img
                         src={image_url}
                         alt={'Resto'}
-                        className="w-full max-h-64 object-cover"
+                        className="w-full h-full object-cover"
                     />
                 </div>
             )}
-            <div className="p-2 md:p-4">
+            <div className="p-2">
                 <h6 className="text-xs font-bold text-left text-slate-600">{product.name}</h6>
                 <div className="flex justify-between items-center mt-2">
                     <div className="flex items-center">
@@ -65,10 +66,15 @@ const ProductCard02 = (props) => {
                         <h5 className="mb-0 ml-2 number text-xs font-bold text-slate-400">{rating}</h5>
                     </div>
                     <div>
-                        <h5 className="mb-0 ml-2 text-sm text-slate-400">₹ {product.price}</h5>
+                        <h5 className="mb-0 ml-2 text-sm font-semibold text-slate-700">₹ {product.price}</h5>
                     </div>
                 </div>
-                <button onClick={() => addItem(product)}>Add to cart</button>
+                <button
+                    onClick={(e) => { e.preventDefault(); addItem(product); }}
+                    className="mt-2 w-full bg-blue-500 text-white text-sm font-semibold py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
+                >
+                    Add to cart
+                </button>
             </div>
         </a>
     )
