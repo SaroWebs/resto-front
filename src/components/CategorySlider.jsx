@@ -24,9 +24,19 @@ const CategorySlider = (props) => {
                 setIsLoading(false);
             });
     }
+
     useEffect(() => {
         getCategories();
     }, []);
+
+    if(isLoading){
+        // show skeleton 
+        return "Loading...";
+    }else if(categories.length < 1){
+        return null;
+    }
+
+
     return (
         <div className={categories.length < 6 ? 'px-8 py-4' : 'px-2 py-4' }>
             <Swiper

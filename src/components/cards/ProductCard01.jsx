@@ -4,9 +4,10 @@ const ProductCard01 = (props) => {
     const {
         image_url="https://img.freepik.com/premium-photo/cheesy-burger-delight-generative-ai_94628-5446.jpg?w=826",
         image_alt="RESTO",
-        title='Cheesy Burgur',
+        name='Cheesy Burgur',
         rating=3.5,
         price=149,
+        discount=10,
         tags=[{
             title:'Featured',
             color: 'red'
@@ -22,7 +23,7 @@ const ProductCard01 = (props) => {
                 />
             </div>
             <div className="p-1 md:p-2">
-                <h6 className="text-xs font-bold text-left text-slate-600">{title}</h6>
+                <h6 className="text-xs font-bold text-left text-slate-600">{name}</h6>
                 <div className="flex justify-between items-center mt-2">
                     <div className="flex items-center">
                         <svg
@@ -43,7 +44,7 @@ const ProductCard01 = (props) => {
             {tags.length && 
             <div className="flex gap-1 p-1">
                 {tags.map((tag,i)=>(
-                    <span key={i} className={`rounded-full bg-${tag.color}-600 text-white px-2 text-[8px]`}>{tag.title}</span>
+                    <span key={i} className={`rounded-full bg-${tag.color}-600 text-gray-600 px-2 text-[8px]`}>{tag.title}</span>
                 ))}
             </div>
             }
