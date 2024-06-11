@@ -51,7 +51,7 @@ const Product = () => {
     return (
         <div className="max-w-4xl mx-auto p-6">
             <div className="relative">
-                <img src={product.images[currentImageIndex]} alt="Product" className="w-full h-64 object-cover rounded-md" />
+                <img src={product.images[currentImageIndex]} alt="Product" loading='lazy' className="w-full h-64 object-cover rounded-md" />
                 <button onClick={prevImage} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded-full">&#10094;</button>
                 <button onClick={nextImage} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded-full">&#10095;</button>
             </div>

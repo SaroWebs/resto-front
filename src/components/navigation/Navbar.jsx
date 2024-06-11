@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FaUser, FaShoppingCart, FaBell, FaBars } from "react-icons/fa";
 import Sidebar from './Sidebar';
 import { useCart } from 'react-use-cart';
+import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
     const [isSidebar, setIsSidebar] = useState(false);
@@ -9,6 +10,7 @@ const Navbar = (props) => {
     const handleOpenSidebar = () => {
         setIsSidebar(!isSidebar);
     }
+
 
     return (
         <>
@@ -22,15 +24,17 @@ const Navbar = (props) => {
                     <div className="rounded-full p-2 border">
                         <FaBell />
                     </div>
-                    <div className="relative rounded-full p-2 border">
+                    <Link
+                        to={'/cart'}
+                        className="relative rounded-full p-2 border">
                         <FaShoppingCart />
                         <div className="absolute -top-1 -right-1 bg-blue-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs font-semi-bold">
                             {totalUniqueItems}
                         </div>
-                    </div>
-                    <div className="rounded-full p-2 border">
+                    </Link>
+                    <Link to={'user/profile'} className="rounded-full p-2 border">
                         <FaUser />
-                    </div>
+                    </Link>
                 </div>
             </div>
             <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} />

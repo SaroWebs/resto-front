@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductCard02 from '../components/cards/ProductCard02';
+import SearchBar from '../components/SearchBar';
 
 let app_url = 'http://localhost:8000';
 const Products = () => {
@@ -46,6 +47,10 @@ const Products = () => {
 
   return (
     <div className=''>
+      <div className="px-4">
+        <SearchBar />
+      </div>
+
       {items.total && items.total > 0 ? (
         <div className="grid grid-cols-2 gap-4 p-4">
           {items.data.map((product, i) => <ProductCard02 key={i} product={product} app_url={app_url} />)}
