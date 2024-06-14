@@ -30,7 +30,7 @@ const Products = () => {
 
   const getItems = () => {
     setIsLoading(true);
-    axios.get(`${app_url}/api/getproducts`, { params: qParams })
+    axios.get(`${app_url}/api/menus`, { params: qParams })
       .then(res => {
         setItems(res.data);
         setIsLoading(false);
@@ -51,7 +51,7 @@ const Products = () => {
         <SearchBar />
       </div>
 
-      {items.total && items.total > 0 ? (
+      {items?.total && items.total > 0 ? (
         <div className="grid grid-cols-2 gap-4 p-4">
           {items.data.map((product, i) => <ProductCard02 key={i} product={product} app_url={app_url} />)}
         </div>

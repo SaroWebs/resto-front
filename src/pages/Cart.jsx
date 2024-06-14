@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from 'react-use-cart';
 
 const Cart = () => {
-    let sys_url = 'http://localhost:8000/'
+    let sys_url = 'http://localhost:8000/';
     const {
         isEmpty,
         totalUniqueItems,
@@ -11,6 +12,21 @@ const Cart = () => {
         removeItem,
         cartTotal
     } = useCart();
+
+    const GST_PERCENTAGE = 0.05;
+    const offerDiscount = 50;
+
+    const calculateSubtotal = () => {
+        return items.reduce((total, item) => total + item.price * item.quantity, 0);
+    };
+
+    const calculateGST = (subtotal) => {
+        return subtotal * GST_PERCENTAGE;
+    };
+
+    const subtotal = calculateSubtotal();
+    const gst = calculateGST(subtotal);
+    const total = subtotal + gst - offerDiscount;
 
     if (isEmpty) return (
         <div className="flex flex-col items-center mt-20">
@@ -22,22 +38,23 @@ const Cart = () => {
         </div>
     );
 
-
     return (
-        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-semibold mb-4">Cart ({totalUniqueItems})</h1>
-            <div className="flex flex-col gap-4">
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md relative">
+            <div className="flex flex-col gap-4 mb-32 overflow-y-auto max-h-[calc(100vh-16rem)]">
                 {items.map(item => (
                     <div key={item.id} className="flex justify-between items-center border p-4 rounded-lg shadow-sm">
                         <div className="flex gap-4 items-center">
                             {item.images.length ?
-                            <img src={sys_url+item.images[0].image_url} alt={'no image'} className="w-16 h-16 object-cover rounded-md" />
-                            :
-                            <img src="/images/no-item.png" alt={'no image'} className="w-16 h-16 object-cover rounded-md" />
-                        }
+                                <img src={sys_url + item.images[0].image_url} alt="item" className="w-20 h-20 object-cover rounded-md" />
+                                :
+                                <img src="/images/no-item.png" alt="no item" className="w-20 h-20 object-cover rounded-md" />
+                            }
                             <div>
-                                <h2 className="text-lg font-medium">{item.name}</h2>
-                                <p className="text-gray-500">₹ {item.price}</p>
+                                <h2 className="font-medium">{item.name}</h2>
+                                <div className="text-gray-500">
+                                    <span className="line-through">₹ {item.originalPrice}</span>
+                                    <span className="ml-2">₹ {item.price}</span>
+                                </div>
                                 <div className="flex items-center mt-2">
                                     <button
                                         className="px-2 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
@@ -60,13 +77,33 @@ const Cart = () => {
                     </div>
                 ))}
             </div>
-            <div className="mt-6 text-right">
-                <h2 className="text-xl font-medium">Total: ₹ {cartTotal}</h2>
-                <button
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                >
-                    Proceed to Checkout
-                </button>
+            <div className="fixed bottom-0 left-0 w-full p-4 bg-white shadow-md border-t border-gray-300 mb-14">
+                <div className="max-w-2xl mx-auto">
+                    <div className="flex justify-between">
+                        <h2 className="text-sm font-medium">Subtotal:</h2>
+                        <h2 className="text-sm font-medium text-right">₹ {subtotal.toFixed(2)}</h2>
+                    </div>
+                    <div className="flex justify-between">
+                        <h2 className="text-sm font-medium">GST:</h2>
+                        <h2 className="text-sm font-medium text-right">₹ {gst.toFixed(2)}</h2>
+                    </div>
+                    <div className="flex justify-between">
+                        <h2 className="text-sm font-medium">Discount:</h2>
+                        <h2 className="text-sm font-medium text-right">-₹ {offerDiscount.toFixed(2)}</h2>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                        <h2 className="text-sm font-bold">Total:</h2>
+                        <h2 className="text-sm font-bold text-right">₹ {total.toFixed(2)}</h2>
+                    </div>
+
+                    <div className="flex w-full">
+                        <Link to={'/payment'}
+                            className="mt-4 w-full text-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Proceed to Checkout
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
     );
